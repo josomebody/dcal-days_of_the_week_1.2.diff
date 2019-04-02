@@ -1,0 +1,30 @@
+--- dcal.orig.c	2016-01-21 18:38:14.000000000 -0500
++++ dcal.c	2019-03-31 23:16:16.695788539 -0500
+@@ -149,6 +149,9 @@ void drawcal(void) {
+   dc->x = cw / 2 - textw(dc, text) / 2;
+   dc->y = 1;
+   drawtext(dc, text, curcol);
++  dc->y = 18;
++  dc->x = 0;
++  drawtext(dc, "S   M   T   W   T   F   S", curcol);
+ 
+   /* save selected date */
+   strftime(curdate, 10, "%Y%m%d", ti);
+@@ -168,7 +171,7 @@ void drawcal(void) {
+   fprintf(stderr, "Drawing thru %s", asctime(ti));
+ 
+   /* draw the calendar */
+-  dc->y = 9;
++  dc->y = 18;
+   while (day < end) {
+     ti = localtime(&day);
+ 
+@@ -326,7 +329,7 @@ void setup(void) {
+   strftime(today, 9, "%Y%m%d", ti);
+ 
+   /* calculate calendar geometry */
+-  ch =  7 * (dc->font.height + 2) + 10;
++  ch =  8 * (dc->font.height + 2) + 10;
+   cw = 21 * (dc->font.width  + 2) +  2;
+ 
+ #ifdef XINERAMA
